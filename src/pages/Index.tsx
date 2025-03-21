@@ -8,6 +8,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import TestimonialCarousel from '@/components/testimonials/TestimonialCarousel';
 import BenefitsSection from '@/components/BenefitsSection';
+import FeaturedTestimonial from '@/components/testimonials/FeaturedTestimonial';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -76,12 +77,15 @@ const Index = () => {
       {/* Benefits Section */}
       <BenefitsSection />
       
+      {/* Featured Testimonial */}
+      <FeaturedTestimonial />
+      
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-gray-900 text-white">
+      <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold">What Our Users Say</h2>
-            <p className="mt-4 text-lg text-gray-400">
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
               Join thousands of freelancers who are winning more clients with ProposalCraft
             </p>
           </div>
@@ -91,7 +95,7 @@ const Index = () => {
       </section>
       
       {/* Features Section */}
-      <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+      <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-950">
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-12 md:mb-20">
             <h2 className="text-3xl sm:text-4xl font-bold">Features designed for freelance success</h2>
@@ -129,7 +133,7 @@ const Index = () => {
             <FeatureCard
               icon={<Shield className="h-6 w-6" />}
               title="Direct Submission"
-              description="Premium users can submit proposals directly to clients without leaving the platform."
+              description="Premium users can submit proposals directly to clients without leaving ProposalCraft."
             />
           </div>
         </div>
