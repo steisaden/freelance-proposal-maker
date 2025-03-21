@@ -33,7 +33,7 @@ const testimonials: Testimonial[] = [
     company: 'PixelPerfect',
     avatarUrl: '',
     avatarFallback: 'MC',
-    content: 'As a non-native English speaker, writing compelling proposals was always a challenge. ProposalCraft helps me sound professional and confident. I've landed 5 new clients in my first month using it!'
+    content: "As a non-native English speaker, writing compelling proposals was always a challenge. ProposalCraft helps me sound professional and confident. I've landed 5 new clients in my first month using it!"
   },
   {
     id: 3,
