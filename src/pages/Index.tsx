@@ -8,7 +8,6 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import TestimonialCarousel from '@/components/testimonials/TestimonialCarousel';
 import BenefitsSection from '@/components/BenefitsSection';
-import FeaturedTestimonial from '@/components/testimonials/FeaturedTestimonial';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -55,30 +54,11 @@ const Index = () => {
               </Button>
             </div>
           </div>
-          
-          {/* Preview Image */}
-          <div className="mt-16 relative mx-auto max-w-5xl">
-            <div className="aspect-[16/9] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-2xl">
-              <div className="w-full h-full bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
-                <img
-                  src="/lovable-uploads/931194d0-00cd-4a1d-abb1-aa266681f9f3.png"
-                  alt="ProposalCraft interface preview"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-full px-6 py-3 shadow-lg">
-              <span className="text-sm font-medium text-gray-900 dark:text-gray-100">Perfect proposals in seconds</span>
-            </div>
-          </div>
         </div>
       </section>
       
       {/* Benefits Section */}
       <BenefitsSection />
-      
-      {/* Featured Testimonial */}
-      <FeaturedTestimonial />
       
       {/* Testimonials Section */}
       <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
