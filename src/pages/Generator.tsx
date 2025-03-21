@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -11,8 +11,24 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
 const Generator = () => {
-  const { proposal, isGenerating, error, generateProposal, setProposal } = useProposalGenerator();
+  const { 
+    proposal, 
+    isGenerating, 
+    error, 
+    generateProposal, 
+    setProposal, 
+    isPremiumUser, 
+    setIsPremiumUser 
+  } = useProposalGenerator();
   const [activeTab, setActiveTab] = useState<string>('form');
+
+  // Check for premium user status in localStorage
+  useEffect(() => {
+    const storedPremiumStatus = localStorage.getItem('isPremiumUser');
+    if (storedPremiumStatus === 'true') {
+      setIsPremiumUser(true);
+    }
+  }, [setIsPremiumUser]);
 
   const handleProposalGenerated = (generatedProposal: string) => {
     setProposal(generatedProposal);
@@ -63,6 +79,11 @@ const Generator = () => {
               <p className="mt-3 text-lg text-gray-600 dark:text-gray-400">
                 Create a professional, tailored proposal in seconds
               </p>
+              {isPremiumUser && (
+                <div className="mt-2 inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                  Premium Account
+                </div>
+              )}
             </div>
 
             <div className="bg-white dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden">
@@ -74,7 +95,7 @@ const Generator = () => {
                         1. Create Proposal
                       </TabsTrigger>
                       <TabsTrigger value="result" disabled={!proposal}>
-                        2. Edit & Copy
+                        2. Edit & {isPremiumUser ? 'Submit' : 'Copy'}
                       </TabsTrigger>
                     </TabsList>
                   </div>
@@ -94,6 +115,7 @@ const Generator = () => {
                       <ProposalResult 
                         proposal={proposal}
                         onEdit={handleEditProposal}
+                        isPremiumUser={isPremiumUser}
                       />
                     )}
                   </TabsContent>

@@ -6,6 +6,8 @@ import { AnimatedButton } from '@/components/ui/AnimatedButton';
 import FeatureCard from '@/components/features/FeatureCard';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import TestimonialCarousel from '@/components/testimonials/TestimonialCarousel';
+import BenefitsSection from '@/components/BenefitsSection';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -57,36 +59,34 @@ const Index = () => {
           <div className="mt-16 relative mx-auto max-w-5xl">
             <div className="aspect-[16/9] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-2xl">
               <div className="w-full h-full bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
-                <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 p-6 md:p-10">
-                  <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
-                    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col">
-                      <h3 className="text-lg font-medium mb-4">Input your job details</h3>
-                      <div className="space-y-4 flex-1">
-                        <div className="h-10 bg-gray-100 dark:bg-gray-700 rounded animate-pulse"></div>
-                        <div className="h-10 bg-gray-100 dark:bg-gray-700 rounded animate-pulse"></div>
-                        <div className="h-10 bg-gray-100 dark:bg-gray-700 rounded animate-pulse"></div>
-                        <div className="h-32 bg-gray-100 dark:bg-gray-700 rounded animate-pulse"></div>
-                      </div>
-                    </div>
-                    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col">
-                      <h3 className="text-lg font-medium mb-4">Generated Proposal</h3>
-                      <div className="space-y-2 flex-1">
-                        <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded w-full animate-pulse"></div>
-                        <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded w-3/4 animate-pulse"></div>
-                        <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded w-5/6 animate-pulse"></div>
-                        <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded w-2/3 animate-pulse"></div>
-                        <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded w-full animate-pulse"></div>
-                        <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded w-4/5 animate-pulse"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <img
+                  src="/lovable-uploads/931194d0-00cd-4a1d-abb1-aa266681f9f3.png"
+                  alt="ProposalCraft interface preview"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-full px-6 py-3 shadow-lg">
               <span className="text-sm font-medium text-gray-900 dark:text-gray-100">Perfect proposals in seconds</span>
             </div>
           </div>
+        </div>
+      </section>
+      
+      {/* Benefits Section */}
+      <BenefitsSection />
+      
+      {/* Testimonials Section */}
+      <section className="py-16 md:py-24 bg-gray-900 text-white">
+        <div className="container px-4 mx-auto">
+          <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold">What Our Users Say</h2>
+            <p className="mt-4 text-lg text-gray-400">
+              Join thousands of freelancers who are winning more clients with ProposalCraft
+            </p>
+          </div>
+          
+          <TestimonialCarousel />
         </div>
       </section>
       
@@ -128,8 +128,8 @@ const Index = () => {
             />
             <FeatureCard
               icon={<Shield className="h-6 w-6" />}
-              title="Platform Compatible"
-              description="Works with Upwork, Fiverr, Freelancer, and other popular freelance platforms."
+              title="Direct Submission"
+              description="Premium users can submit proposals directly to clients without leaving the platform."
             />
           </div>
         </div>

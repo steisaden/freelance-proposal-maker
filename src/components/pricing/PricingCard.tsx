@@ -1,7 +1,9 @@
 
+import { useState } from 'react';
 import { Check } from 'lucide-react';
-import { AnimatedButton } from '@/components/ui/AnimatedButton';
 import { cn } from '@/lib/utils';
+import { AnimatedButton } from '@/components/ui/AnimatedButton';
+import PaymentCheckout from './PaymentCheckout';
 
 interface PricingFeature {
   text: string;
@@ -29,6 +31,8 @@ const PricingCard = ({
   buttonText = 'Get Started',
   className,
 }: PricingCardProps) => {
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+
   return (
     <div 
       className={cn(
@@ -73,11 +77,20 @@ const PricingCard = ({
             size="lg"
             fullWidth
             hasArrow
+            onClick={() => setIsCheckoutOpen(true)}
           >
             {buttonText}
           </AnimatedButton>
         </div>
       </div>
+
+      <PaymentCheckout
+        planName={title}
+        price={price}
+        period={period}
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+      />
     </div>
   );
 };

@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
 import { useToast } from '@/components/ui/use-toast';
 
 interface ProposalFormProps {
@@ -28,6 +29,14 @@ const ProposalForm = ({ onProposalGenerated, isLoading, error }: ProposalFormPro
   const [tone, setTone] = useState('professional');
   const [customInstructions, setCustomInstructions] = useState('');
   const [platform, setPlatform] = useState('upwork');
+  const [proposalLength, setProposalLength] = useState([250]);
+
+  const getLengthLabel = (value: number) => {
+    if (value <= 150) return 'Short';
+    if (value <= 250) return 'Standard';
+    if (value <= 350) return 'Detailed';
+    return 'Comprehensive';
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,12 +50,21 @@ const ProposalForm = ({ onProposalGenerated, isLoading, error }: ProposalFormPro
       return;
     }
     
-    // Simulated proposal generation (this would connect to your API in a real app)
-    const sampleProposal = `Hello,\n\nI noticed your job posting for a web developer and I'm very interested in working with you. I have 5+ years of experience building React applications and have worked on similar projects in the past.\n\nBased on your requirements, I would approach this project by first setting up the basic architecture, then implementing the core features you've described. I estimate this would take approximately 2-3 weeks to complete.\n\nMy rate for this project would be $40/hour, and I'm available to start immediately.\n\nPlease message me on ${platform} if you'd like to discuss this further.\n\nBest regards,\n[Your Name]`;
-    
-    setTimeout(() => {
-      onProposalGenerated(sampleProposal);
-    }, 1500);
+    // In a real implementation this would call your API
+    // For now just simulating the generation using the provided hook
+    import('@/services/openaiService').then(({ generateProposalWithGPT4o }) => {
+      generateProposalWithGPT4o({
+        jobUrl,
+        tone,
+        platform,
+        customInstructions,
+        proposalLength: proposalLength[0]
+      }).then(proposal => {
+        onProposalGenerated(proposal);
+      }).catch(err => {
+        console.error('Error generating proposal:', err);
+      });
+    });
   };
 
   return (
@@ -111,6 +129,29 @@ const ProposalForm = ({ onProposalGenerated, isLoading, error }: ProposalFormPro
         </RadioGroup>
       </div>
       
+      <div className="space-y-4">
+        <div className="flex justify-between items-center">
+          <Label>Proposal Length</Label>
+          <span className="text-sm font-medium text-gray-500">
+            {getLengthLabel(proposalLength[0])} ({proposalLength[0]} words)
+          </span>
+        </div>
+        <Slider
+          value={proposalLength}
+          min={150}
+          max={450}
+          step={50}
+          onValueChange={setProposalLength}
+          className="my-6"
+        />
+        <div className="flex justify-between text-xs text-gray-500">
+          <span>Short</span>
+          <span>Standard</span>
+          <span>Detailed</span>
+          <span>Comprehensive</span>
+        </div>
+      </div>
+      
       <div className="space-y-2">
         <Label htmlFor="custom-instructions">Custom Instructions (Optional)</Label>
         <Textarea
@@ -130,7 +171,7 @@ const ProposalForm = ({ onProposalGenerated, isLoading, error }: ProposalFormPro
         {isLoading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Generating Proposal...
+            Generating with GPT-4o-mini...
           </>
         ) : (
           'Generate Proposal'
